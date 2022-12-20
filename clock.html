@@ -36,13 +36,18 @@
             yr = now.getFullYear();
         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         var tags = ["mon", "d", "h", "m", "s"],
-          corr = [months[mo], dy, hou.pad(2), min.pad(2), sec.pad(2), milli];
+            corr = [months[mo], dy, hou.pad(2), min.pad(2), sec.pad(2), milli];
         for (var i = 0; i < tags.length; i++)
-          document.getElementById(tags[i]).firstChild.nodeValue = corr[i];
+            document.getElementById(tags[i]).firstChild.nodeValue = corr[i];
         document.title = hou.pad(2)+":"+min.pad(2)
     }
     
     function initClock() {
+        var hideSeconds = true;
+        if (hideSeconds) {
+            document.getElementById("s").style.display = "none";
+            document.getElementById("s_colon").style.display = "none";
+        }
         updateClock();
         window.setInterval("updateClock()", 1);
     }
@@ -55,7 +60,8 @@
     <a id="d">1</a>
     <br />
     <a id="h">12</a> :
-    <a id="m">00</a>:
+    <a id="m">00</a>
+    <a id="s_colon">:</a>
     <a id="s">00</a>
     </div>
    
