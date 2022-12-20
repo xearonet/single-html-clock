@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="https://time.is/favicon.ico"/>
+</head>
+<style>
+    body {background-color:#1D1E22;}
+
+    title {text-align:center;}
+
+    #timedate {
+        font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+        text-align:left;
+        width: 50%;
+        margin: 40px;
+        color:#fff;
+        border-left: 3px solid #ed1f24;
+        padding: 20px;
+    }
+</style>
+    
+<script>
+    Number.prototype.pad = function(n) {
+        for (var r = this.toString(); r.length < n; r = 0 + r);
+        return r;
+    };
+    
+    function updateClock() {
+        var now = new Date();
+        var milli = now.getMilliseconds(),
+            sec = now.getSeconds(),
+            min = now.getMinutes(),
+            hou = now.getHours(),
+            mo = now.getMonth(),
+            dy = now.getDate(),
+            yr = now.getFullYear();
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var tags = ["mon", "d", "h", "m", "s"],
+          corr = [months[mo], dy, hou.pad(2), min.pad(2), sec.pad(2), milli];
+        for (var i = 0; i < tags.length; i++)
+          document.getElementById(tags[i]).firstChild.nodeValue = corr[i];
+        document.title = hou.pad(2)+":"+min.pad(2)
+    }
+    
+    function initClock() {
+        updateClock();
+        window.setInterval("updateClock()", 1);
+    }
+</script>
+
+<body onLoad="initClock()">
+
+    <div id="timedate">
+    <a id="mon">January</a>
+    <a id="d">1</a>
+    <br />
+    <a id="h">12</a> :
+    <a id="m">00</a>:
+    <a id="s">00</a>
+    </div>
+   
+</body>
+</html>
