@@ -17,6 +17,10 @@
         border-left: 3px solid #ed1f24;
         padding: 20px;
     }
+    #da {
+        font: small-caps lighter 20px/150% "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+        padding: 20px;
+    }
 </style>
     
 <script>
@@ -33,10 +37,12 @@
             hou = now.getHours(),
             mo = now.getMonth(),
             dy = now.getDate(),
+            da = now.getDay(),
             yr = now.getFullYear();
         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        var tags = ["mon", "d", "h", "m", "s"],
-            corr = [months[mo], dy, hou.pad(2), min.pad(2), sec.pad(2), milli];
+        var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var tags = ["da", "mon", "d", "h", "m", "s"],
+            corr = [days[da].substring(0,3), months[mo], dy, hou.pad(2), min.pad(2), sec.pad(2), milli];
         for (var i = 0; i < tags.length; i++)
             document.getElementById(tags[i]).firstChild.nodeValue = corr[i];
         document.title = hou.pad(2)+":"+min.pad(2)
@@ -57,7 +63,7 @@
 
     <div id="timedate">
     <a id="mon">January</a>
-    <a id="d">1</a>
+    <a id="d">1</a><a id="da">Monday</a>
     <br />
     <a id="h">12</a> :
     <a id="m">00</a>
